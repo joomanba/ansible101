@@ -1,0 +1,31 @@
+---
+- name: Install Apache
+  hosts: all
+  become: true
+  
+  tasks:
+    - name: Install Apache
+      yum: 
+        name: 
+          - httpd
+          - httpd-devel
+        state: present
+
+    - name: Copy confiuration files
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: root
+        owner: root
+        mode: 0644
+      with_items:
+        - src: httpd.conf
+          dest: /etc/httpd/conf/httpd.conf
+        - src: httpd-vhosts.conf
+          dest: /etc/httpd/conf/httpd-vhost.conf
+
+    - name: Ensure Apache is started now and at boot
+      service:
+        name: httpd
+        state: started
+        enabled: true

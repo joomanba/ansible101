@@ -1,0 +1,11 @@
+---
+- name: Set up NTP on all servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure NTP is installed
+      # yum: name=ntp state=present #for CentOS
+      apt: name=ntp state=present
+    - name: Eusure NTP is running
+      service: name=ntp state=started enabled=yes
+      # service: name=ntpd state=started enabled=yes #for CentOS
