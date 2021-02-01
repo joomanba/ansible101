@@ -9,12 +9,16 @@
 [ubuntu-ssh-enabled](https://github.com/joomanba/ssh-enabled-docker/tree/master/ubuntu)
 
 ```bash
-docker run -d -p 8080:8080 -p 80:80 --name centos --privileged -it joomanba/ssh-enabled-centos
-cat ~/.ssh/id_rsa.pub | docker exec -i centos  /bin/bash -c "cat >> /centos/.ssh/authorized_keys"
+docker run -d -p 8080:80 --name centos --privileged -it joomanba/ssh-enabled-centos
+docker run -d -p 8081:80 --name ubuntu --privileged -it joomanba/ssh-enabled-ubuntu
+cat ~/.ssh/id_rsa.pub | docker exec -i centos  /bin/bash -c "cat >> /home/centos/.ssh/authorized_keys"
+cat ~/.ssh/id_rsa.pub | docker exec -i ubuntu  /bin/bash -c "cat >> /home/ubuntu/.ssh/authorized_keys"
 
 ssh-keygen -R 172.17.0.2
+ssh-keygen -R 172.17.0.3
 
-ssh -i ~/.ssh/id_rsa  root@172.17.0.2
+ssh -i ~/.ssh/id_rsa  centos@172.17.0.2
+ssh -i ~/.ssh/id_rsa  ubuntu@172.17.0.2
 ```
 
 ## Playbook handlers

@@ -1,6 +1,6 @@
 ---
 - name: Install Apache
-  hosts: centos
+  hosts: all
   gather_facts: true
   become: true
 
