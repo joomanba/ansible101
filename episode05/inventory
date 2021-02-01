@@ -1,0 +1,13 @@
+[ubuntu]
+172.17.0.3
+
+[ubuntu:vars]
+ansible_user=root
+ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[centos]
+172.17.0.2
+
+[centos:vars]
+ansible_user=centos
+ansible_ssh_private_key_file=~/.ssh/id_rsa

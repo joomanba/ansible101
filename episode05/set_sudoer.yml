@@ -1,0 +1,10 @@
+---
+- hosts: centos
+  become: true
+  tasks:
+    - lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%centos'
+        line: '%centos ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
