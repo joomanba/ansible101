@@ -1,4 +1,6 @@
-# Chapter 3 - Ad-Hoc Commands
+# Episode 2 - Ad-hoc tasks and Inventory
+
+[Ansible 101 - Episode 2 - Ad-hoc tasks and Inventory](https://www.youtube.com/watch?v=7kVfqmGtDL8&t=0s)
 
 ## Development Environment
 
