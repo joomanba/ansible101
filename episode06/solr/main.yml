@@ -1,0 +1,14 @@
+---
+- hosts: centos
+  become: yes
+
+  vars:
+    firewall_log_dropped_packets: false
+
+  roles:
+    - geerlingguy.ntp
+    - geerlingguy.firewall
+    - geerlingguy.java
+    - geerlingguy.solr
+    - geerlingguy.jenkins
+

@@ -1,0 +1,22 @@
+---
+- name: Install Apache
+  hosts: all
+  gather_facts: true
+  become: true
+
+  handlers:
+    - import_tasks: handlers/apache.yml
+
+  pre_tasks:
+    - debug: var=ansible_os_family
+    - name: Load variable files
+      include_vars: "{{ item }}"
+      with_first_found:
+        - "vars/apache_{{ ansible_os_family }}.yml"
+        - "vars/apache_default.yml"
+
+  tasks:
+    - import_tasks: tasks/apache.yml       
+
+- import_playbook: app.yml
+
