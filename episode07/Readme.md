@@ -36,3 +36,26 @@ ansible-playbook main.yml -K
 ## Chapter 13 - Testing and CI for Ansible Content
 
 ![Testing](images/images001.png)
+
+### debugging
+
+```yaml
+---
+- hosts: localhost
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: Register the output of the 'uptime' command.
+      command: uptime
+      register: system_uptime
+
+    - name: Print the registered output of the 'uptime' command.
+      debug:
+        var: system_uptime.stdout
+
+    - name: Print a message if a command resulted in a change.
+      debug:
+        msg: "Command resulted in a change"
+      when: system_uptime is changed
+```
