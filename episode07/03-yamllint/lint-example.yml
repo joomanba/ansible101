@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: Register the output of the 'uptime' command.
+      command: uptime
+      register: system_uptime   # commnet
+
+    - name: Print the registered output of the 'uptime' command.
+      debug:
+        var: system_uptime.stdout
