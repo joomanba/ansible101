@@ -58,7 +58,7 @@ Wed Jan 27 01:29:23 UTC 2021
 Increase the value of Ansible fork to speed up the process of running commands on tens or hundreds of servers
 
 ```bash
-ansible multi -a "date" -t 2
+ansible multi -a "date" -f 2
 ```
 
 Run Ansible asynchronously
